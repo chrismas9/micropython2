@@ -133,13 +133,13 @@ $(PROG): $(OBJ)
 # we may want to compile using Thumb, but link with non-Thumb libc.
 	$(Q)$(CC) -o $@ $^ $(LIB) $(LDFLAGS)
 ifndef DEBUG
-	$(Q)$(STRIP) $(STRIPFLAGS_EXTRA) $(PROG)
+	$(Q)$(STRIP) $(STRIPFLAGS_EXTRA) $(PROG_BIN)
 endif
-	$(Q)$(SIZE) $$(find $(BUILD) -path "$(BUILD)/build/frozen*.o") $(PROG)
+	$(Q)$(SIZE) $$(find $(BUILD) -path "$(BUILD)/build/frozen*.o") $(PROG_BIN)
 
 clean: clean-prog
 clean-prog:
-	$(RM) -f $(PROG)
+	$(RM) -f $(PROG_BIN)
 	$(RM) -f $(PROG).map
 
 .PHONY: clean-prog
