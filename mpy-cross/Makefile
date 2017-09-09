@@ -9,6 +9,7 @@ override undefine FROZEN_DIR
 override undefine FROZEN_MPY_DIR
 override undefine BUILD
 override undefine PROG
+override undefine PROG_BIN
 endif
 
 include ../py/mkenv.mk
@@ -66,6 +67,9 @@ SRC_C = \
 COMPILER_TARGET := $(shell $(CC) -dumpmachine)
 ifneq (,$(findstring mingw,$(COMPILER_TARGET)))
 	SRC_C += ports/windows/fmode.c
+	PROG_BIN = $(PROG).exe
+else
+	PROG_BIN = $(PROG)
 endif
 
 OBJ = $(PY_O)
